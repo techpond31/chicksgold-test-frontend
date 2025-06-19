@@ -1,0 +1,608 @@
+.header {
+  background-color: #303141;
+  border-bottom: 1px solid #2a2a3e;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.header-container {
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.logo-image {
+  height: 36px;
+  width: auto;
+  transition: opacity 0.3s ease;
+  filter: brightness(1.2) contrast(1.1);
+}
+
+.logo-image:hover {
+  opacity: 0.8;
+}
+
+/* Separator Line */
+.separator {
+  width: 2px;
+  height: 40px;
+  background-color: #6a6a7a;
+  margin-right: 30px;
+}
+
+/* Mobile Menu Button - Hidden by default */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-btn span {
+  width: 24px;
+  height: 3px;
+  background-color: #ffffff;
+  margin: 2px 0;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Navigation */
+.nav {
+  flex: 1;
+  display: flex;
+  margin-right: 40px;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 35px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ffd700;
+}
+
+.dropdown-icon {
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.currency-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.currency-selector:hover {
+  background-color: #2a2a3e;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.cart:hover {
+  background-color: #2a2a3e;
+}
+
+.cart svg {
+  stroke: #ffffff;
+}
+
+.cart-text {
+  display: inline;
+}
+
+.sign-in-btn {
+  background-color: #00d4aa;
+  color: #0a0a0a;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.sign-in-btn:hover {
+  background-color: #00b894;
+}
+
+.user-icon {
+  stroke: #0a0a0a;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+/* Mobile Currency Selector - Only visible in mobile menu */
+.mobile-currency-selector {
+  display: none;
+}
+
+/* Mobile Responsive Design - Start from 1024px */
+@media (max-width: 1024px) {
+  .header-container {
+    padding: 0 20px;
+    height: 60px;
+    position: relative;
+  }
+
+  /* Show Mobile Menu Button - Left side */
+  .mobile-menu-btn {
+    display: flex;
+    order: 1;
+    margin-right: 15px;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Logo - After hamburger */
+  .logo {
+    order: 2;
+    margin-right: auto;
+  }
+
+  .logo-image {
+    height: 30px;
+  }
+
+  /* Hide separator on mobile */
+  .separator {
+    display: none;
+  }
+
+  /* Hide desktop navigation */
+  .nav {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #303141;
+    border-top: 1px solid #2a2a3e;
+    margin: 0;
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  .nav-open {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 0;
+    padding: 30px 20px 20px 20px;
+    height: 100%;
+  }
+
+  .nav-item {
+    border-bottom: 1px solid #2a2a3e;
+  }
+
+  .nav-item:last-child {
+    border-bottom: none;
+  }
+
+  .nav-link {
+    padding: 20px 0;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+    min-height: 44px;
+  }
+
+  .nav-link:active {
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Show mobile currency selector in navigation menu */
+  .mobile-currency-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    margin-top: 20px;
+    border-top: 1px solid #2a2a3e;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .mobile-currency-selector:hover {
+    color: #ffd700;
+  }
+
+  .mobile-currency-selector .currency-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Header Actions - Right side, compact */
+  .header-actions {
+    order: 3;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  /* COMPLETELY HIDE USD selector on mobile header */
+  .currency-selector {
+    display: none !important;
+  }
+
+  /* Cart - Icon only, no text */
+  .cart {
+    padding: 10px;
+    gap: 0;
+    min-height: 44px;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .cart svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cart-text {
+    display: none;
+  }
+
+  /* Add cart count badge */
+  .cart::after {
+    content: "5";
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: #ff4444;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  /* Compact sign-in button for mobile */
+  .sign-in-btn {
+    padding: 10px 14px;
+    font-size: 12px;
+    gap: 6px;
+    min-height: 44px;
+    border-radius: 4px;
+  }
+
+  .user-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Small Mobile Responsive Design */
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 15px;
+    height: 56px;
+  }
+
+  .mobile-menu-btn {
+    padding: 6px;
+    margin-right: 12px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .mobile-menu-btn span {
+    width: 20px;
+    height: 2px;
+  }
+
+  .logo-image {
+    height: 26px;
+  }
+
+  .nav {
+    top: 56px;
+  }
+
+  .nav-list {
+    padding: 20px 15px 15px 15px;
+  }
+
+  .nav-link {
+    padding: 16px 0;
+    font-size: 15px;
+    min-height: 40px;
+  }
+
+  .mobile-currency-selector {
+    padding: 16px 0;
+    margin-top: 15px;
+    font-size: 15px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .cart {
+    padding: 8px;
+    min-height: 40px;
+  }
+
+  .cart svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cart::after {
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
+    top: 1px;
+    right: 1px;
+  }
+
+  .sign-in-btn {
+    padding: 8px 12px;
+    font-size: 11px;
+    gap: 4px;
+    min-height: 40px;
+  }
+
+  .user-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 360px) {
+  .header-container {
+    padding: 0 12px;
+    height: 52px;
+  }
+
+  .mobile-menu-btn {
+    padding: 4px;
+    margin-right: 10px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .logo-image {
+    height: 24px;
+  }
+
+  .nav {
+    top: 52px;
+  }
+
+  .nav-list {
+    padding: 15px 12px 12px 12px;
+  }
+
+  .mobile-currency-selector {
+    padding: 14px 0;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .cart {
+    padding: 6px;
+    min-height: 36px;
+  }
+
+  .cart svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .cart::after {
+    width: 12px;
+    height: 12px;
+    font-size: 8px;
+    top: 0px;
+    right: 0px;
+  }
+
+  .sign-in-btn {
+    padding: 6px 10px;
+    font-size: 10px;
+    min-height: 36px;
+  }
+
+  .user-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Landscape Mobile */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .header-container {
+    height: 50px;
+  }
+
+  .nav {
+    top: 50px;
+  }
+
+  .nav-list {
+    padding: 15px 20px 15px 20px;
+  }
+
+  .nav-link {
+    padding: 12px 0;
+  }
+
+  .mobile-currency-selector {
+    padding: 12px 0;
+    margin-top: 15px;
+  }
+}
+
+/* Desktop - Ensure hamburger is hidden */
+@media (min-width: 1025px) {
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  .mobile-currency-selector {
+    display: none !important;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .nav-link,
+  .currency-selector,
+  .cart,
+  .sign-in-btn,
+  .mobile-currency-selector {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu-btn {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .dropdown-icon,
+  .mobile-menu-btn span,
+  .logo-image,
+  .sign-in-btn {
+    transition: none;
+  }
+}
+
+/* Mobile Menu Overlay */
+@media (max-width: 1024px) {
+  .nav-open::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
