@@ -1,5 +1,7 @@
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import "../styles/header.css";
+import "../styles/footer.css";
 
 export default function Home() {
   return (
@@ -14,6 +16,7 @@ export default function Home() {
           </p>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
