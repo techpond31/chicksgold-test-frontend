@@ -1,4 +1,6 @@
 import { FaShoppingCart, FaCaretUp, FaCaretDown } from "react-icons/fa";
+import { GiBoltSaw, GiBurningMeteor } from "react-icons/gi";
+import { SiWritedotas } from "react-icons/si";
 
 interface ProductCardProps {
   image: string;
@@ -6,8 +8,7 @@ interface ProductCardProps {
   currentPrice: string;
   oldPrice: string;
   description: string;
-  gameIcon: string;
-  gameIconAlt: string;
+  gameType: "rs3" | "wow" | "gw2"; // Changed to gameType
   onSale: boolean;
   inStock: boolean;
 }
@@ -18,11 +19,24 @@ export default function ProductCard({
   currentPrice,
   oldPrice,
   description,
-  gameIcon,
-  gameIconAlt,
+  gameType, // Using gameType
   onSale,
   inStock,
 }: ProductCardProps) {
+  const renderGameIcon = () => {
+    const iconClassName = "game-icon-svg";
+    switch (gameType) {
+      case "rs3":
+        return <GiBoltSaw className={iconClassName} />;
+      case "wow":
+        return <GiBurningMeteor className={iconClassName} />;
+      case "gw2":
+        return <SiWritedotas className={iconClassName} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="product-card">
       <div className="product-header">
@@ -71,13 +85,7 @@ export default function ProductCard({
           ADD <FaShoppingCart className="cart-icon" />
         </button>
       </div>
-      <div className="game-icon-wrapper">
-        <img
-          src={gameIcon || "/placeholder.svg"}
-          alt={gameIconAlt}
-          className="game-icon-img"
-        />
-      </div>
+      <div className="game-icon-wrapper">{renderGameIcon()}</div>
     </div>
   );
 }
