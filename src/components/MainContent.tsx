@@ -1,15 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { FaSearch, FaCaretDown } from "react-icons/fa";
+import {
+  FaSearch,
+  FaCaretDown,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 import { GiBroadsword, GiFeather } from "react-icons/gi";
 import { TbMoneybag } from "react-icons/tb";
+import ProductCard from "./ProductCard";
 
 export default function MainContent() {
   const [game, setGame] = useState("Select a game");
   const [searchQuery, setSearchQuery] = useState("");
   const [price, setPrice] = useState("All");
   const [itemType, setItemType] = useState("All");
+  const [sortBy, setSortBy] = useState("Featured");
 
   const gameOptions = [
     "Select a game",
@@ -43,6 +50,32 @@ export default function MainContent() {
     "Mounts",
     "Pets",
   ];
+
+  const sortByOptions = [
+    "Featured",
+    "Price: Low to High",
+    "Price: High to Low",
+    "Newest",
+    "Oldest",
+  ];
+
+  const products = Array.from({ length: 15 }).map((_, i) => ({
+    id: i,
+    image: `/treasure-2.webp`,
+    name: "Blue Partyhat",
+    currentPrice: "$450.00",
+    oldPrice: "$522.50",
+    description: "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+    gameIcon:
+      i % 3 === 0
+        ? "/chicks-logo.svg"
+        : i % 3 === 1
+        ? "/globe.svg"
+        : "/window.svg",
+    gameIconAlt: i % 3 === 0 ? "RS3" : i % 3 === 1 ? "WoW" : "GW2",
+    onSale: i % 2 === 0,
+    inStock: true,
+  }));
 
   return (
     <main className="main-content">
@@ -126,6 +159,51 @@ export default function MainContent() {
               </select>
             </div>
           </div>
+        </div>
+
+        <div className="results-count-bar">
+          <span className="results-count">Showing 20 - from 125</span>
+          <div className="filter-item dropdown sort-by-dropdown">
+            <span className="dropdown-text">Sort By: {sortBy}</span>
+            <FaCaretDown className="dropdown-arrow" />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="dropdown-select-overlay"
+              aria-label="Sort by"
+            >
+              {sortByOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="product-grid-wrapper">
+          <div className="product-grid">
+            {products.map((product) => (
+              <ProductCard key={product.id} {...product} />
+            ))}
+          </div>
+        </div>
+
+        <div className="pagination">
+          <button className="pagination-arrow prev" aria-label="Previous page">
+            <FaChevronLeft className="pagination-icon" />
+          </button>
+          <div className="page-numbers">
+            <button className="page-number active">1</button>
+            <button className="page-number">2</button>
+            <button className="page-number">3</button>
+            <button className="page-number">4</button>
+            <span className="pagination-ellipsis">...</span>
+            <button className="page-number">11</button>
+          </div>
+          <button className="pagination-arrow next" aria-label="Next page">
+            <FaChevronRight className="pagination-icon" />
+          </button>
         </div>
       </div>
     </main>
